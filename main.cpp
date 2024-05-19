@@ -1,10 +1,12 @@
-#include "cyber_club/cyber_club.h"
-#include "files_managers/reader.h"
-#include "files_managers/writer.h"
+#include "cyber_club.h"
+#include "reader.h"
+#include "writer.h"
 
 int main(int argc, char *argv[]) {
-    Reader reader();
-    Writer writer();
+    std::string file_name = argv[1];
+
+    Reader &reader = Reader::GetReader(file_name);
+    Writer writer;
     CyberClub cyber_club(reader, writer);
 
     cyber_club.start();

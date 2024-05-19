@@ -1,7 +1,3 @@
-#include "event.hpp"
+#include "event.h"
 
-namespace Event {
-    class Event{
-        
-    };
-};
+

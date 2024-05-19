@@ -1,5 +1,7 @@
-#include "table_manager.hpp"
-#include "client_queue.hpp"
+#include "table_manager.h"
+#include "client_queue.h"
+
+#include <string>
 
 class ClubData {
 private:

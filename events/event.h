@@ -1,5 +1,7 @@
-#include "../time/time.hpp"
-#include "../club_data/club_data.hpp"
+#pragma once
+
+#include "../time/time.h"
+#include "../club_data/club_data.h"
 
 #include <string>
 
