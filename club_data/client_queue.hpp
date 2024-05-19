@@ -1,0 +1,5 @@
+class ClientQueue{
+    private:
+
+    public:
+};

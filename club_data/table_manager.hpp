@@ -1,0 +1,8 @@
+class TableManager {
+private:
+
+
+public:
+    
+
+};

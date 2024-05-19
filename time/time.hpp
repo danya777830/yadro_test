@@ -1,0 +1,6 @@
+class MyTime {
+private:
+
+public:
+    
+};

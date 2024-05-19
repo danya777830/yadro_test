@@ -1,0 +1,4 @@
+namespace Event {
+    class ClientLeft {
+    };
+};
