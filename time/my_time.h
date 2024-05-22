@@ -11,5 +11,8 @@ public:
     MyTime(const std::string&);
     MyTime() = default;
 
+    bool operator<(const MyTime&) const;
+
+    int to_min() const;
     std::string to_str() const;
 };

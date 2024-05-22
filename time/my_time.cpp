@@ -1,6 +1,11 @@
 #include "my_time.h"
 #include "my_exception.h"
-#include <iostream>
+
+int MyTime::to_min() const {
+    int it = ((hour_[0] - '0') * 10 + (hour_[1] - '0')) * 60;
+    it += (minutes_[0] - '0') * 10 + minutes_[1] - '0';
+    return it;
+}
 
 MyTime::MyTime(const std::string &str) {
     if (str.size() != 5 || str[2] != ':') {
@@ -20,10 +25,16 @@ MyTime::MyTime(const std::string &str) {
     if (hour > 24 || minutes > 60) {
         throw WrongFormatException();
     }
-    hour_ = str[0] + str[1];
-    minutes_ = str[3] + str[4];
+    hour_ = str[0];
+    hour_ += str[1];
+    minutes_ = str[3];
+    minutes_ += str[4];
 }
 
 std::string MyTime::to_str() const {
     return hour_ + ":" + minutes_;
+}
+
+bool MyTime::operator<(const MyTime &b) const{
+    return to_min() < b.to_min();
 }

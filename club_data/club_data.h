@@ -17,7 +17,7 @@ private:
 
 public:
     ClubData() = default;
-    ClubData(int, int);
+    ClubData(int, const MyTime&, const MyTime&, int);
 
     bool is_client_inside(const std::string&) const;
     void delete_client(const std::string&);
@@ -26,4 +26,5 @@ public:
     void client_sit(const std::string&, int, const MyTime&);
 
     bool is_table_occupied(int) const;
+    bool is_open(const MyTime&) const;
 };

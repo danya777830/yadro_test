@@ -1,7 +1,8 @@
 #include "reader.h"
 #include "my_exception.h"
-
 #include "client_arrived.h"
+
+#include <iostream>
 
 Reader::Reader(const std::string &file_name) {
     stream_ = std::ifstream(file_name, std::ios::binary);
@@ -59,30 +60,33 @@ std::unique_ptr<Event> Reader::read_event() {
     }
 
     int cnt_space = 0;
-    std::string time;
-    int nomber;
+    std::string time_str;
+    int nomber = 0;
     size_t i = 0;
     for (; i < str.size(); ++i) {
         if (str[i] == ' ') {
             ++cnt_space;
             if (cnt_space > 1) {
+                ++i;
                 break;
             }
             continue;
         }
         if (cnt_space == 0) {
-            time += str[i];
+            time_str += str[i];
         }
         else {
+            if (!isdigit(str[i]))
+                throw WrongFormatException();
             nomber = nomber * 10 + str[i] - '0';
         }
     }
     EventType::Type type = static_cast<EventType::Type>(nomber);
-    MyTime time(time);
+    MyTime time(time_str);
     switch(type) {
         case EventType::ClientArrived:
             std::string name;
-            for (size_t i = 0; i < str.size(); ++i) {
+            for (; i < str.size(); ++i) {
                 if (!(islower(str[i]) || isdigit(str[i]) || str[i] == '_' || str[i] == '-')) {
                     throw WrongFormatException();
                 }

@@ -1,6 +1,8 @@
 #include "club_data.h"
 
-ClubData::ClubData(int table_count, int price) {
+ClubData::ClubData(int table_count, const MyTime &begin_time, const MyTime &end_time, int price) {
+    end_time_ = end_time;
+    begin_time_ = begin_time;
     table_manager_ = TableManager(table_count, price);
     client_queue_ = ClientQueue();
     clients_ = std::unordered_set<std::string>();
@@ -34,4 +36,8 @@ void ClubData::client_sit(const std::string &client_name, int table_count, const
 
 bool ClubData::is_table_occupied(int table_nomber) const{
     return table_manager_.is_table_occupied(table_nomber);
+}
+
+bool ClubData::is_open(const MyTime& time) const {
+    return !(time < begin_time_ || end_time_ < time);
 }

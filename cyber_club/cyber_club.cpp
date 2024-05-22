@@ -10,7 +10,7 @@ CyberClub::CyberClub() {
     auto time = reader.read_time();
     auto price = reader.read_int();
 
-    club_data_ = ClubData(table_count, price);
+    club_data_ = ClubData(table_count, time.first, time.second, price);
 }
 
 CyberClub &CyberClub::get_club() {
@@ -23,10 +23,10 @@ void CyberClub::start() {
     Writer &writer = Writer::get_writer();
     writer.write_int(1);
     writer.write_int(2);
-    return;
     while(true) {
         try {
             auto event = reader.read_event();
+            writer.write_event(*event);
             event->start(club_data_);
         } catch (...) {
             return;

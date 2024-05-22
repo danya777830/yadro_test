@@ -13,19 +13,20 @@ enum Type {
     СlientLeft = 4,
     OutgoingEventСlientLeft = 11,
     OutgoingEventClientSat = 12,
+    Error = 13,
 };
 };
 
 class Event{
 private:
-    const Type type_;
+    const EventType::Type type_;
     const MyTime time_;
 
 public:
-    Event(MyTime time, Type type): time_(time), type_(type) {};
+    Event(MyTime time, EventType::Type type): time_(time), type_(type) {};
 
     MyTime get_time() const;
-    Type get_type() const;
+    EventType::Type get_type() const;
 
     virtual void start(ClubData&) = 0;
     virtual std::string to_str() const = 0;
