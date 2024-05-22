@@ -17,9 +17,10 @@ private:
     Reader (const std::string&);
 
 public:
-    static Reader &GetReader(const std::string&);
+    static Reader &get_reader(const std::string&);
+    static Reader &get_reader();
 
     int read_int();
     std::pair<MyTime, MyTime> read_time();
-    std::unique_ptr<Event::Event> read_event();
+    std::unique_ptr<Event> read_event();
 };

@@ -15,9 +15,9 @@ int main(int argc, char *argv[]) {
         file_name = INPUT_FILE;
     }
 
-    Reader &reader = Reader::GetReader(file_name);
-    Writer &writer = Writer::GetWriter(OUTPUT_FILE);
-    CyberClub cyber_club(reader, writer);
+    Reader &reader = Reader::get_reader(file_name);
+    Writer &writer = Writer::get_writer(OUTPUT_FILE);
+    CyberClub &cyber_club = CyberClub::get_club();
 
     cyber_club.start();
 }

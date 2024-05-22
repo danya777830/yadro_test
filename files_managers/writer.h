@@ -17,9 +17,10 @@ class Writer {
     Writer (const std::string&);
 
 public:
-    static Writer &GetWriter(const std::string&);
+    static Writer &get_writer(const std::string&);
+    static Writer &get_writer();
 
     void write_int(int);
     void write_time(const std::pair<MyTime, MyTime> &time);
-    std::unique_ptr<Event::Event> write_event();
+    void write_event(const Event&);
 };
