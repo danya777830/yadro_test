@@ -18,6 +18,12 @@ private:
     std::unordered_map<std::string, std::unique_ptr<QueueLink>> clients_;
 
 public:
+    int size() const;
+
     bool is_client_inside(const std::string&) const;
     void delete_client(const std::string&);
+
+    void add_client(const std::string&);
+
+    std::string get_client() const;
 };

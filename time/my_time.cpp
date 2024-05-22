@@ -7,6 +7,32 @@ int MyTime::to_min() const {
     return it;
 }
 
+MyTime MyTime::from_min_to_time(int min) {
+    MyTime it = MyTime();
+    int h = min/60;
+    min %= 60;
+    if (min < 10) {
+        it.minutes_ = "0";
+    }
+    else {
+        it.minutes_ = min/10 + '0';
+    }
+    it.minutes_ += min % 10 + '0';
+    if (h < 10) {
+        it.hour_ = "0";
+    }
+    else {
+        it.hour_ = h/10 + '0';
+    }
+    it.hour_ += h % 10 + '0';
+    return it;
+}
+
+MyTime::MyTime() {
+    hour_ = "00";
+    minutes_ = "00";
+}
+
 MyTime::MyTime(const std::string &str) {
     if (str.size() != 5 || str[2] != ':') {
         throw WrongFormatException();
@@ -31,10 +57,32 @@ MyTime::MyTime(const std::string &str) {
     minutes_ += str[4];
 }
 
+int MyTime::not_full_hours() const {
+    int min = to_min();
+    int h = min/60;
+    if (min % 60 != 0) {
+        return h + 1;
+    }
+    return h;
+}
+
 std::string MyTime::to_str() const {
     return hour_ + ":" + minutes_;
 }
 
 bool MyTime::operator<(const MyTime &b) const{
     return to_min() < b.to_min();
+}
+
+MyTime MyTime::operator+(const MyTime &b) const{
+    int min = to_min() + b.to_min();
+    return MyTime::from_min_to_time(min);
+}
+
+MyTime MyTime::operator-(const MyTime &b) const{
+    int min = to_min() - b.to_min();
+    if (min < 0) {
+        return MyTime("00:00");
+    }
+    return MyTime::from_min_to_time(min);
 }

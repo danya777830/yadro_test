@@ -16,6 +16,10 @@ private:
     Reader &operator=(const Reader&) = delete;
     Reader (const std::string&);
 
+    std::vector<std::string> split(const std::string&) const;
+    int str_to_int(const std::string&) const;
+    bool is_name_valid(const std::string&) const;
+
 public:
     static Reader &get_reader(const std::string&);
     static Reader &get_reader();

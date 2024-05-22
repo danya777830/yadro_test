@@ -1,11 +1,11 @@
 #include "event.h"
 
-class ClientLeft : public Event {
+class ClientWaiting : public Event {
 private:
     std::string client_name_;
 
 public:
-    ClientLeft(const MyTime &time, EventType::Type type, const std::string &client_name) : Event(time, type) {
+    ClientWaiting(const MyTime &time, const EventType::Type &type, const std::string &client_name) : Event(time, type) {
         client_name_ = client_name;
     }
     virtual void start(ClubData&);

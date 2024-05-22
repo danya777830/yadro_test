@@ -29,5 +29,8 @@ club_data/table_manager.cpp
 events/event.cpp
 events/error.cpp
 events/client_arrived.cpp
+events/client_waiting.cpp
+events/client_sat.cpp
+events/client_left.cpp
 time/my_time.cpp
 )

@@ -17,10 +17,14 @@ void Writer::write_int(int el) {
     stream_ << el << "\n";
 }
 
-void Writer::write_time(const std::pair<MyTime, MyTime> &time) {
-    stream_ << time.first.to_str() << " " << time.second.to_str() << "\n";
+void Writer::write_time(const MyTime &time) {
+    stream_ << time.to_str() << "\n";
 }
 
 void Writer::write_event(const Event &event) {
     stream_ << event.to_str() << "\n";
+}
+
+void Writer::write_profit(int nomber, const std::pair<int, MyTime> &profit) {
+    stream_ << nomber << " " << profit.first << " " << profit.second.to_str() << "\n";
 }

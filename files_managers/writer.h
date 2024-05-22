@@ -21,6 +21,7 @@ public:
     static Writer &get_writer();
 
     void write_int(int);
-    void write_time(const std::pair<MyTime, MyTime> &time);
+    void write_time(const MyTime &time);
     void write_event(const Event&);
+    void write_profit(int, const std::pair<int, MyTime>&);
 };
